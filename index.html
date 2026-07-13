@@ -113,6 +113,20 @@ a.card:hover{border-color:var(--brass)}
 .card .cat{font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8AA0B1;margin-top:auto;padding-top:8px}
 .more-btn{margin:22px auto 0;display:block}
 
+
+/* Course tabs */
+.launch-badge{display:inline-block;background:#E8F5EE;color:#1E5B39;padding:3px 9px;border-radius:99px;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 18px;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.tab{flex:none;border:1px solid var(--line);background:#fff;border-radius:8px 8px 0 0;padding:12px 16px 10px;cursor:pointer;font-family:var(--body);font-weight:600;font-size:.86rem;color:#3D5468;position:relative;white-space:nowrap}
+.tab .num{font-family:var(--mono);font-size:.7rem;color:var(--brass2);display:block;margin-bottom:2px;font-weight:600;letter-spacing:.05em}
+.tab .status{position:absolute;top:6px;right:8px;font-size:.55rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:2px 6px;border-radius:99px;background:#E8F5EE;color:#1E5B39}
+.tab .status.soon{background:#FDF3E2;color:var(--brass2)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab[aria-selected="true"] .num{color:var(--brass)}
+.tab:hover:not([aria-selected="true"]){border-color:var(--brass)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
 /* Featured course */
 .feat{border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .feat-head{background:var(--ink);color:#fff;padding:26px 28px}
@@ -275,30 +289,134 @@ footer a{color:#C9D8E3}
 
 <section id="featured">
   <div class="wrap">
-    <span class="eyebrow">Featured course</span>
-    <h2>Inside a SkillBridge Africa course</h2>
-    <p class="sub">Here's Course 018 mapped end to end — every course in the catalogue follows this same gated journey.</p>
-    <div class="feat">
-      <div class="feat-head">
-        <span class="no">COURSE 018 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
-        <h3>Poultry: Broiler Production</h3>
-        <p>Day-old chick to market bird in seven weeks — and you, from beginner to certified broiler producer with real farm experience behind you.</p>
-      </div>
-      <div class="feat-body">
-        <div class="mod"><span class="wk">WKS 1–2</span><span><b>B1</b> — Introduction to Broiler Farming: the industry, the production cycle, breeds, independent vs contract growing</span></div>
-        <div class="mod"><span class="wk">WKS 3–4</span><span><b>B2</b> — Housing &amp; Equipment: house design, ventilation, litter, feeders and drinkers</span></div>
-        <div class="mod"><span class="wk">WKS 5–6</span><span><b>B3</b> — Brooding &amp; Chick Management: temperature, lighting, first-week care</span></div>
-        <div class="mod"><span class="wk">WKS 7–8</span><span><b>B4</b> — Feeding &amp; Growth: feed phases, FCR, weighing to target weight</span></div>
-        <div class="mod"><span class="wk">WKS 9–10</span><span><b>B5</b> — Health, Vaccination &amp; Biosecurity: Gumboro, Newcastle, farm biosecurity</span></div>
-        <div class="mod"><span class="wk">WKS 11–12</span><span><b>B6</b> — Slaughter, Marketing &amp; Records: costing, pricing, the full-cycle budget</span></div>
-        <div class="mod"><span class="wk">WKS 13–32</span><span><b>Stage 2</b> — Placement search + 8–12 weeks paid work on a broiler operation</span></div>
-        <div class="mod"><span class="wk">WKS 33–40</span><span><b>Stage 3</b> — Problem solving, scaling, enterprise management + capstone report</span></div>
-      </div>
-      <div class="feat-foot">
-        <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
-        <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Broiler%20Production">Register founding interest</a>
+    <span class="eyebrow">The launch five</span>
+    <span class="launch-badge">✓ 4 of 5 courses ready · Tomato coming soon</span>
+    <h2>The first courses, module by module</h2>
+    <p class="sub">Every course follows the same gated journey. Tap a course to see exactly what you'll learn, week by week. Every course is $15, start to finish.</p>
+
+    <div class="tabs" role="tablist" aria-label="Launch five courses">
+      <button class="tab" role="tab" aria-selected="true" data-tab="broiler"><span class="num">COURSE 018</span>Broiler Production<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="layer"><span class="num">COURSE 019</span>Layer &amp; Eggs<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="pig"><span class="num">COURSE 016</span>Piggery<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="butcher"><span class="num">COURSE 081</span>Butchery &amp; Meat<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="tomato"><span class="num">COURSE 003</span>Tomato Farming<span class="status soon">Soon</span></button>
+    </div>
+
+    <div class="tab-panel active" id="tab-broiler" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 018 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
+          <h3>Poultry: Broiler Production</h3>
+          <p>Day-old chick to market bird in seven weeks — and you, from beginner to certified broiler producer with real farm experience behind you.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>B1</b> — Introduction to Broiler Farming: industry, production cycle, breeds, independent vs contract growing</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>B2</b> — Housing &amp; Equipment: house design, ventilation, litter, feeders and drinkers</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>B3</b> — Brooding &amp; Chick Management: temperature, lighting, first-week care</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>B4</b> — Feeding &amp; Growth: feed phases, FCR, weighing to target weight</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>B5</b> — Health, Vaccination &amp; Biosecurity: Gumboro, Newcastle, farm biosecurity</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>B6</b> — Slaughter, Marketing &amp; Records: costing, pricing, the full-cycle budget</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–32</span><span>Placement search + 8–12 weeks paid work on a broiler operation</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 33–40</span><span><b>B7–B9</b> — Problem solving, scaling, enterprise management + capstone report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Broiler%20Production">Register founding interest</a>
+        </div>
       </div>
     </div>
+
+    <div class="tab-panel" id="tab-layer" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 019 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
+          <h3>Poultry: Layer &amp; Egg Production</h3>
+          <p>Eighteen months of daily eggs from a well-managed layer flock. Everything from pullet to spent hen, sold direct to your local market.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>L1</b> — Introduction: the layer industry, productive life, egg biology, breeds, housing systems</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>L2</b> — Pullet Rearing &amp; Housing: brooding, weight targets, deep-litter vs cage vs free-range</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>L3</b> — Light, Feed &amp; Coming into Lay: the light programme, calcium, first eggs, reaching peak</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>L4</b> — Heat, Health &amp; Keeping the Flock in Lay: heat management, diseases, biosecurity for 18 months</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>L5</b> — Egg Handling, Marketing &amp; Records: collection, grading, storage, buyers, daily records</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>L6</b> — Stage 1 Capstone: full-cycle budget with real local prices and cash flow forecast</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–32</span><span>Placement search + real work on a working layer farm</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 33–40</span><span><b>L7–L9</b> — Problem solving, scaling &amp; alternative models, enterprise management + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Layer%20Production">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pig" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 016 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
+          <h3>Piggery: Commercial Pig Production</h3>
+          <p>The most efficient large livestock a small farmer can keep — properly taught, from breeding a sow to selling a finished pig, with real African conditions in mind.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>P1</b> — Introduction to Pig Farming: the industry, cycle, 114-day rule, breeds, farrow-to-finish vs grower-finisher</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>P2</b> — Housing &amp; Equipment: pig cannot sweat, space allowances, floors, farrowing pen</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>P3</b> — Breeding &amp; Farrowing: heat detection, service, gestation, farrowing supervision, newborn care</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>P4</b> — Feeding &amp; Growth: feed phases, sow feeding, FCR, the swill warning</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>P5</b> — Health, Biosecurity &amp; African Swine Fever: no vaccine, no cure — biosecurity is the whole defence</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>P6</b> — Marketing, Costing &amp; Records: live vs dressed weight, buyer landscape, sow cards, full-cycle budget</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–32</span><span>Placement search + real work on a working piggery</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 33–42</span><span><b>P7–P9</b> — Value addition (bacon, ham, sausage), problem solving, scaling, enterprise management + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Piggery">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-butcher" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 081 · HOSPITALITY, CATERING &amp; FOOD PROCESSING</span>
+          <h3>Butchery &amp; Meat Processing</h3>
+          <p>A regulated trade. This course teaches you the craft, the food-safety rules, and the licensed path to running a small butchery that customers trust.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>BU1</b> — Introduction to Butchery: the regulated trade, the animals, the cold chain</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>BU2</b> — Knife Skills &amp; Basic Cuts: knives, sharpening, safe cutting, primal cuts</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>BU3</b> — Beef, Sheep &amp; Goat: breaking a carcass, retail cuts, mince and trim</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>BU4</b> — Pork &amp; Poultry: primals, portioning chickens, safe handling of both</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>BU5</b> — Hygiene, HACCP &amp; Food Safety Law: the regulated environment in your country</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>BU6</b> — Butchery Business: costing, pricing, customer service, records, full-cycle capstone</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–24</span><span>Placement search + real work in a licensed butchery</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 25–32</span><span><b>BU7–BU9</b> — Sausage &amp; value addition (principles only), problem solving, running a butchery + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification. Curing, fermented and ready-to-eat products taught in principle only — the practice needs licensed in-person training.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Butchery">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-tomato" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 003 · AGRICULTURE &amp; CROP PRODUCTION</span>
+          <h3>Tomato Farming (Coming soon)</h3>
+          <p>The most popular horticultural crop in Africa — and one of the most damaging when done wrong. Course under development; register interest to be told when it opens.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1</span><span><b>T1–T6</b> — Introduction, land preparation, seed &amp; nursery, planting &amp; irrigation, pest &amp; disease, harvest &amp; marketing</span></div>
+          <div class="mod"><span class="wk">STAGE 2</span><span>Placement on a working tomato farm</span></div>
+          <div class="mod"><span class="wk">STAGE 3</span><span><b>T7–T9</b> — Problem solving, greenhouse &amp; scaling, enterprise management + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> when it opens — expected soon.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Tomato%20Farming">Register interest</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -513,6 +631,16 @@ function applyLang(code){
 }
 langEl.onchange = ()=>applyLang(langEl.value);
 try{ const sl = localStorage.getItem('sb_lang'); if(sl && I18N[sl]){ langEl.value=sl; applyLang(sl); } }catch(e){}
+
+/* ---- Course tab switcher ---- */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t === tab));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + target));
+  });
+});
+
 </script>
 </body>
 </html>
