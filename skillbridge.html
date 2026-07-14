@@ -1,1 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillBridge Africa — Learn a trade. Prove it. Get placed.</title>
+<meta name="description" content="For everyone who couldn't go to college. 200 practical skills, $15 start to finish, real paid placements across all 54 African countries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700;125,900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16324A; --ink2:#0F2436; --brass:#C98F2D; --brass2:#A87418;
+  --mist:#EEF3F6; --line:#D4DEE5; --white:#FFFFFF; --ok:#2E7D4F;
+  --body:'Public Sans',system-ui,sans-serif; --disp:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{font-family:var(--body);color:var(--ink);background:var(--white);line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
+/* Nav */
+nav{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;border-bottom:3px solid var(--brass)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-family:var(--disp);font-weight:900;font-size:1.05rem;letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo svg{flex:none}
+.nav-links{display:flex;gap:18px;font-size:.85rem;font-weight:600}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover,.nav-links a:focus{opacity:1;color:var(--brass)}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* Locale bar */
+.locale-bar{background:var(--ink2);border-bottom:1px solid #274B66}
+.locale-in{display:flex;gap:10px;align-items:center;padding:8px 0;flex-wrap:wrap}
+.locale-in label{font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#7E99AD}
+.locale-in select{background:#1C3D57;color:#fff;border:1px solid #35597A;border-radius:6px;padding:7px 10px;font-family:var(--body);font-size:.82rem;max-width:46vw}
+.locale-in select:focus{outline:2px solid var(--brass)}
+#langnote{font-size:.72rem;color:var(--brass);display:none;width:100%}
+[dir="rtl"] .mod .wk{width:auto;min-width:74px}
+[dir="rtl"] .emp li{padding:9px 26px 9px 0}
+[dir="rtl"] .emp li::before{left:auto;right:0}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,var(--ink) 0%,var(--ink2) 100%);color:#fff;padding:56px 0 0;overflow:hidden}
+.hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(1.9rem,5.5vw,3.4rem);line-height:1.08;max-width:14ch}
+.hero p.lead{margin:18px 0 26px;font-size:1.05rem;max-width:52ch;color:#CBD9E4}
+.price-tag{display:inline-flex;align-items:baseline;gap:10px;background:var(--brass);color:var(--ink2);font-family:var(--disp);font-weight:900;padding:10px 18px;border-radius:6px;font-size:1.4rem}
+.price-tag small{font-family:var(--body);font-weight:600;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:44px}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.95rem;padding:12px 22px;border-radius:6px;border:2px solid transparent}
+.btn-brass{background:var(--brass);color:var(--ink2)}
+.btn-brass:hover{background:#DBA23E}
+.btn-ghost{border-color:#4C6A82;color:#fff}
+.btn-ghost:hover{border-color:var(--brass);color:var(--brass)}
+
+/* Bridge signature */
+.bridge{position:relative;padding:0 0 26px}
+.bridge svg{display:block;width:100%;height:auto}
+.bridge-labels{display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;font-size:.78rem;color:#9FB6C6;margin-top:6px;gap:6px}
+.bridge-labels b{display:block;color:#fff;font-size:.92rem;font-family:var(--disp);font-weight:700}
+.bridge-labels .gate{color:var(--brass);font-family:var(--mono);font-size:.68rem;letter-spacing:.03em}
+
+/* Stats strip */
+.stats{background:var(--mist);border-bottom:1px solid var(--line)}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:20px 0;text-align:center}
+.stat b{font-family:var(--disp);font-weight:900;font-size:1.5rem;display:block;color:var(--ink)}
+.stat span{font-size:.74rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#5A7387}
+@media(max-width:640px){.stats-in{grid-template-columns:repeat(2,1fr)}}
+
+/* Sections */
+section{padding:56px 0}
+.eyebrow{font-family:var(--mono);font-weight:600;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brass2);display:block;margin-bottom:10px}
+h2{font-family:var(--disp);font-weight:900;font-size:clamp(1.5rem,3.8vw,2.2rem);line-height:1.15;margin-bottom:14px}
+.sub{color:#4C6378;max-width:60ch;margin-bottom:28px}
+
+/* Stages */
+.stages{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:760px){.stages{grid-template-columns:1fr}}
+.stage{border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:8px;padding:22px;background:#fff}
+.stage:nth-child(2){border-top-color:var(--brass)}
+.stage:nth-child(3){border-top-color:var(--ok)}
+.stage .tag{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.06em;color:#5A7387}
+.stage h3{font-family:var(--disp);font-weight:700;font-size:1.12rem;margin:6px 0 10px}
+.stage p{font-size:.9rem;color:#3D5468}
+.stage .gate{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;font-weight:600;color:var(--brass2)}
+
+/* Score */
+.score-wrap{background:var(--ink);color:#fff;border-radius:12px;padding:34px 28px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+@media(max-width:760px){.score-wrap{grid-template-columns:1fr}}
+.score-wrap h2{color:#fff}
+.score-wrap p{color:#BFD2DF;font-size:.95rem}
+.score-bars div{margin-bottom:12px}
+.score-bars .lbl{display:flex;justify-content:space-between;font-size:.78rem;font-weight:600;margin-bottom:4px;color:#DCE8F0}
+.bar{height:10px;background:#274B66;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brass);border-radius:5px}
+
+/* Catalogue */
+#catalogue{background:var(--mist)}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.search{flex:1;min-width:220px;padding:12px 16px;border:1px solid var(--line);border-radius:8px;font-family:var(--body);font-size:.95rem;background:#fff}
+.search:focus{outline:2px solid var(--brass)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 0 16px;-webkit-overflow-scrolling:touch}
+.chip{flex:none;border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;color:#3D5468}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.count-line{font-family:var(--mono);font-size:.75rem;color:#5A7387;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px;text-decoration:none}
+a.card:hover{border-color:var(--brass)}
+.card .no{font-family:var(--mono);font-weight:600;font-size:.7rem;color:var(--brass2);letter-spacing:.06em}
+.card h4{font-family:var(--disp);font-weight:700;font-size:.98rem;line-height:1.25}
+.card .spec{font-size:.78rem;color:#5A7387}
+.card .cat{font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#8AA0B1;margin-top:auto;padding-top:8px}
+.more-btn{margin:22px auto 0;display:block}
+
+
+/* Course tabs */
+.launch-badge{display:inline-block;background:#E8F5EE;color:#1E5B39;padding:3px 9px;border-radius:99px;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 18px;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.tab{flex:none;border:1px solid var(--line);background:#fff;border-radius:8px 8px 0 0;padding:12px 16px 10px;cursor:pointer;font-family:var(--body);font-weight:600;font-size:.86rem;color:#3D5468;position:relative;white-space:nowrap}
+.tab .num{font-family:var(--mono);font-size:.7rem;color:var(--brass2);display:block;margin-bottom:2px;font-weight:600;letter-spacing:.05em}
+.tab .status{position:absolute;top:6px;right:8px;font-size:.55rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:2px 6px;border-radius:99px;background:#E8F5EE;color:#1E5B39}
+.tab .status.soon{background:#FDF3E2;color:var(--brass2)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab[aria-selected="true"] .num{color:var(--brass)}
+.tab:hover:not([aria-selected="true"]){border-color:var(--brass)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.mod .done{color:var(--ok);font-weight:700;margin-right:6px}
+.mod .pending{color:var(--brass2);font-weight:700;margin-right:6px}
+
+
+/* Featured course */
+.feat{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.feat-head{background:var(--ink);color:#fff;padding:26px 28px}
+.feat-head .no{font-family:var(--mono);color:var(--brass);font-size:.75rem;letter-spacing:.08em}
+.feat-head h3{font-family:var(--disp);font-weight:900;font-size:1.5rem;margin:4px 0 6px}
+.feat-head p{color:#BFD2DF;font-size:.9rem;max-width:60ch}
+.feat-body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:8px 28px}
+@media(max-width:700px){.feat-body{grid-template-columns:1fr}}
+.mod{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--mist);font-size:.88rem}
+.mod .wk{font-family:var(--mono);font-size:.72rem;color:var(--brass2);flex:none;width:74px;padding-top:2px}
+.feat-foot{padding:18px 28px;background:var(--mist);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.85rem}
+
+/* Employers */
+.emp{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media(max-width:760px){.emp{grid-template-columns:1fr}}
+.emp ul{list-style:none;margin-top:6px}
+.emp li{padding:9px 0 9px 26px;position:relative;font-size:.92rem;color:#3D5468}
+.emp li::before{content:"";position:absolute;left:0;top:15px;width:14px;height:3px;background:var(--brass);border-radius:2px}
+
+/* Footer */
+footer{background:var(--ink2);color:#93A9BA;padding:40px 0;font-size:.82rem}
+footer .wrap{display:grid;gap:16px}
+footer b{color:#fff}
+footer a{color:#C9D8E3}
+.legal{border-top:1px solid #274B66;padding-top:16px;font-size:.75rem;line-height:1.7}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="SkillBridge Africa home">
+      <svg width="26" height="18" viewBox="0 0 26 18" fill="none" aria-hidden="true"><path d="M1 17C1 8 6 3 13 3s12 5 12 14" stroke="#C98F2D" stroke-width="2.6" stroke-linecap="round"/><rect x="0" y="15" width="5" height="3" fill="#fff"/><rect x="21" y="15" width="5" height="3" fill="#fff"/></svg>
+      SKILLBRIDGE AFRICA
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#catalogue">Courses</a>
+      <a href="#featured">Featured</a>
+      <a href="#employers">Employers</a>
+    </div>
+  </div>
+</nav>
+
+<div class="locale-bar">
+  <div class="wrap locale-in">
+    <label for="country">🌍 Country</label>
+    <select id="country" aria-label="Select your country"></select>
+    <label for="lang">Language</label>
+    <select id="lang" aria-label="Select language">
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="ar">العربية</option>
+      <option value="sw">Kiswahili</option>
+      <option value="pt">Português</option>
+    </select>
+    <span id="langnote">Course content is currently taught in English.</span>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <h1>Learn a trade. Prove it. Get placed.</h1>
+    <p class="lead">SkillBridge Africa is for everyone who couldn't go to college or afford high fees. We teach 200 practical skills online across all 54 African countries, then bridge you into a real, paid workplace placement. No placement, no certificate. Skills to survive and thrive — for $15.</p>
+    <div class="hero-cta">
+      <span class="price-tag">$15 <small>per course · start to finish</small></span>
+      <a class="btn btn-ghost" href="#catalogue">Browse 200 courses</a>
+    </div>
+    <div class="bridge" aria-hidden="true">
+      <svg viewBox="0 0 1000 150" preserveAspectRatio="xMidYMax meet">
+        <path d="M20 140 C 250 10, 750 10, 980 140" stroke="#C98F2D" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="20" y1="140" x2="980" y2="140" stroke="#4C6A82" stroke-width="2"/>
+        <line x1="335" y1="140" x2="335" y2="63" stroke="#4C6A82" stroke-width="2"/>
+        <line x1="500" y1="140" x2="500" y2="47" stroke="#4C6A82" stroke-width="2"/>
+        <line x1="665" y1="140" x2="665" y2="63" stroke="#4C6A82" stroke-width="2"/>
+        <circle cx="20" cy="140" r="9" fill="#EEF3F6"/>
+        <circle cx="500" cy="47" r="9" fill="#C98F2D"/>
+        <circle cx="980" cy="140" r="9" fill="#2E7D4F"/>
+      </svg>
+      <div class="bridge-labels">
+        <div><b>Stage 1 · Theory</b>12 weeks, 6 modules, AI-marked<span class="gate">GATE: PASS 60%+ ON TIME</span></div>
+        <div><b>Stage 2 · Placement</b>Documented search, paid work<span class="gate">GATE: PLACEMENT + EMPLOYER REPORT</span></div>
+        <div><b>Stage 3 · Certification</b>Advanced modules + capstone<span class="gate">CERTIFICATE + JOBS BOARD</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat"><b>200</b><span>Vocational courses</span></div>
+    <div class="stat"><b>$15</b><span>Full course, no extras</span></div>
+    <div class="stat"><b>24/7</b><span>AI tutor &amp; marking</span></div>
+    <div class="stat"><b>&lt;9 mo</b><span>Theory to certificate</span></div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>Three stages. Two gates. One certificate that means something.</h2>
+    <p class="sub">Every course runs on a published clock — two weeks per module, hard deadlines, one paid re-sit. Your punctuality, marks, and effort build your SkillBridge Score, which employers use to pick placement candidates. Being on the ball is the curriculum. Course lengths vary — many finish in under 9 months.</p>
+    <p class="sub" id="entryline" style="font-weight:600;color:var(--brass2)">Open entry: age 16+, basic English literacy — no prior qualifications needed.</p>
+    <div class="stages">
+      <div class="stage">
+        <span class="tag">STAGE 1 · WEEKS 1–12</span>
+        <h3>Theory, on the clock</h3>
+        <p>Six two-week modules: lessons, practice question banks, and an AI tutor inside every module for whenever you're stuck. Quizzes marked instantly; written tasks marked by AI against a published rubric.</p>
+        <div class="gate">Gate: pass every module at 60%+, on time.</div>
+      </div>
+      <div class="stage">
+        <span class="tag">STAGE 2 · WEEKS 13–32</span>
+        <h3>Search, then work</h3>
+        <p>Build your Showcase Profile, keep a weekly Placement Search Record with evidence, and secure a placement through our Placement Board — at a wage you and the employer agree upfront.</p>
+        <div class="gate">Gate: no placement, no progression. Effort is tracked.</div>
+      </div>
+      <div class="stage">
+        <span class="tag">STAGE 3 · WEEKS 33–40</span>
+        <h3>Advance and certify</h3>
+        <p>Advanced modules plus a capstone built from your own placement. Pass it and your certificate is issued, your profile turns Graduate, and you join the Graduate Jobs Board.</p>
+        <div class="gate">Outcome: certificate + lifetime jobs board access.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="score-wrap">
+      <div>
+        <span class="eyebrow" style="color:var(--brass)">The SkillBridge Score</span>
+        <h2>Employers don't read CVs here. They read your Score.</h2>
+        <p>Every student carries a live score out of 100, updated automatically as you study. It measures what employers actually care about: do you know your trade, and do you show up on time?</p>
+      </div>
+      <div class="score-bars" aria-label="Score components">
+        <div><div class="lbl"><span>Academic results</span><span>40</span></div><div class="bar"><i style="width:40%"></i></div></div>
+        <div><div class="lbl"><span>Punctuality — on the ball</span><span>25</span></div><div class="bar"><i style="width:25%"></i></div></div>
+        <div><div class="lbl"><span>Placement search effort</span><span>15</span></div><div class="bar"><i style="width:15%"></i></div></div>
+        <div><div class="lbl"><span>Employer report</span><span>15</span></div><div class="bar"><i style="width:15%"></i></div></div>
+        <div><div class="lbl"><span>Conduct &amp; completion pledge</span><span>5</span></div><div class="bar"><i style="width:5%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogue">
+  <div class="wrap">
+    <span class="eyebrow">The catalogue</span>
+    <h2>200 courses. Pick your trade.</h2>
+    <p class="sub">From broiler production to solar installation, bricklaying to bookkeeping. Every course: $15, start to finish.</p>
+    <div class="filter-row">
+      <input class="search" id="q" type="search" placeholder="Search courses — try 'broiler', 'welding', 'solar'…" aria-label="Search courses">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    <div class="count-line" id="count"></div>
+    <div class="grid" id="grid"></div>
+    <button class="btn btn-brass more-btn" id="more" type="button">Show more courses</button>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="wrap">
+    <span class="eyebrow">The launch five</span>
+    <span class="launch-badge">✓ All 5 launch courses ready — Broiler · Layers · Piggery · Butchery · Tomato</span>
+    <h2>The first courses, module by module</h2>
+    <p class="sub">Every course follows the same gated journey. Tap a course to see exactly what you'll learn, week by week. Every course is $15, start to finish.</p>
+
+    <div class="tabs" role="tablist" aria-label="Launch five courses">
+      <button class="tab" role="tab" aria-selected="true" data-tab="broiler"><span class="num">COURSE 018</span>Broiler Production<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="layer"><span class="num">COURSE 019</span>Layer &amp; Eggs<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="pig"><span class="num">COURSE 016</span>Piggery<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="butcher"><span class="num">COURSE 081</span>Butchery &amp; Meat<span class="status">Ready</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="tomato"><span class="num">COURSE 003</span>Tomato Farming<span class="status">Ready</span></button>
+    </div>
+
+    <div class="tab-panel active" id="tab-broiler" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 018 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
+          <h3>Poultry: Broiler Production</h3>
+          <p>Day-old chick to market bird in seven weeks — and you, from beginner to certified broiler producer with real farm experience behind you.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>B1</b> — Introduction to Broiler Farming: industry, production cycle, breeds, independent vs contract growing</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>B2</b> — Housing &amp; Equipment: house design, ventilation, litter, feeders and drinkers</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>B3</b> — Brooding &amp; Chick Management: temperature, lighting, first-week care</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>B4</b> — Feeding &amp; Growth: feed phases, FCR, weighing to target weight</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>B5</b> — Health, Vaccination &amp; Biosecurity: Gumboro, Newcastle, farm biosecurity</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>B6</b> — Slaughter, Marketing &amp; Records: costing, pricing, the full-cycle budget</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–32</span><span>Placement search + 8–12 weeks paid work on a broiler operation</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 33–40</span><span><b>B7–B9</b> — Problem solving, scaling, enterprise management + capstone report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Broiler%20Production">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-layer" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 019 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
+          <h3>Poultry: Layer &amp; Egg Production</h3>
+          <p>Eighteen months of daily eggs from a well-managed layer flock. Everything from pullet to spent hen, sold direct to your local market.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>L1</b> — Introduction: the layer industry, productive life, egg biology, breeds, housing systems</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>L2</b> — Pullet Rearing &amp; Housing: brooding, weight targets, deep-litter vs cage vs free-range</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>L3</b> — Light, Feed &amp; Coming into Lay: the light programme, calcium, first eggs, reaching peak</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>L4</b> — Heat, Health &amp; Keeping the Flock in Lay: heat management, diseases, biosecurity for 18 months</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>L5</b> — Egg Handling, Marketing &amp; Records: collection, grading, storage, buyers, daily records</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>L6</b> — Stage 1 Capstone: full-cycle budget with real local prices and cash flow forecast</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–32</span><span>Placement search + real work on a working layer farm</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 33–40</span><span><b>L7–L9</b> — Problem solving, scaling &amp; alternative models, enterprise management + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Layer%20Production">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pig" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 016 · ANIMAL HUSBANDRY &amp; LIVESTOCK</span>
+          <h3>Piggery: Commercial Pig Production</h3>
+          <p>The most efficient large livestock a small farmer can keep — properly taught, from breeding a sow to selling a finished pig, with real African conditions in mind.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>P1</b> — Introduction to Pig Farming: the industry, cycle, 114-day rule, breeds, farrow-to-finish vs grower-finisher</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>P2</b> — Housing &amp; Equipment: pig cannot sweat, space allowances, floors, farrowing pen</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>P3</b> — Breeding &amp; Farrowing: heat detection, service, gestation, farrowing supervision, newborn care</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>P4</b> — Feeding &amp; Growth: feed phases, sow feeding, FCR, the swill warning</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>P5</b> — Health, Biosecurity &amp; African Swine Fever: no vaccine, no cure — biosecurity is the whole defence</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>P6</b> — Marketing, Costing &amp; Records: live vs dressed weight, buyer landscape, sow cards, full-cycle budget</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–32</span><span>Placement search + real work on a working piggery</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 33–42</span><span><b>P7–P9</b> — Value addition (bacon, ham, sausage), problem solving, scaling, enterprise management + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Piggery">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-butcher" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 081 · HOSPITALITY, CATERING &amp; FOOD PROCESSING</span>
+          <h3>Butchery &amp; Meat Processing</h3>
+          <p>A regulated trade. This course teaches you the craft, the food-safety rules, and the licensed path to running a small butchery that customers trust.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><b>BU1</b> — Introduction to Butchery: the regulated trade, the animals, the cold chain</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><b>BU2</b> — Knife Skills &amp; Basic Cuts: knives, sharpening, safe cutting, primal cuts</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><b>BU3</b> — Beef, Sheep &amp; Goat: breaking a carcass, retail cuts, mince and trim</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><b>BU4</b> — Pork &amp; Poultry: primals, portioning chickens, safe handling of both</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><b>BU5</b> — Hygiene, HACCP &amp; Food Safety Law: the regulated environment in your country</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><b>BU6</b> — Butchery Business: costing, pricing, customer service, records, full-cycle capstone</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–24</span><span>Placement search + real work in a licensed butchery</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 25–32</span><span><b>BU7–BU9</b> — Sausage &amp; value addition (principles only), problem solving, running a butchery + placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification. Curing, fermented and ready-to-eat products taught in principle only — the practice needs licensed in-person training.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Butchery">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-tomato" role="tabpanel">
+      <div class="feat">
+        <div class="feat-head">
+          <span class="no">COURSE 003 · AGRICULTURE &amp; CROP PRODUCTION</span>
+          <h3>Tomato Farming</h3>
+          <p>The most popular horticultural crop in Africa — and the one where beginners commonly lose 40-60% of the crop. This course moves you out of that bracket into farmers who consistently get a saleable crop off the field, at prices that pay.</p>
+        </div>
+        <div class="feat-body">
+          <div class="mod"><span class="wk">STAGE 1 · WKS 1–2</span><span><span class="done">✓</span><b>T1</b> — Introduction: the reward and reality of tomato farming, the plant, varieties, growing systems</span></div>
+          <div class="mod"><span class="wk">WKS 3–4</span><span><span class="done">✓</span><b>T2</b> — Land, Soil &amp; Nursery: never-plant rules, rotation, soil preparation, raising strong seedlings, transplanting</span></div>
+          <div class="mod"><span class="wk">WKS 5–6</span><span><span class="done">✓</span><b>T3</b> — Water, Trellising &amp; Vegetative Growth: watering (the biggest technical skill), staking, pruning, weeding, mulching, feeding by stage</span></div>
+          <div class="mod"><span class="wk">WKS 7–8</span><span><span class="done">✓</span><b>T4</b> — Pests, Diseases &amp; Protection: late blight, bacterial wilt, TYLCV, Tuta absoluta, IPM, pesticide safety</span></div>
+          <div class="mod"><span class="wk">WKS 9–10</span><span><span class="done">✓</span><b>T5</b> — Harvest, Marketing &amp; Records: picking, grading, cold chain, buyer landscape, records</span></div>
+          <div class="mod"><span class="wk">WKS 11–12</span><span><span class="done">✓</span><b>T6</b> — Stage 1 Capstone: full costed crop budget with real local prices, cash flow, stress tests</span></div>
+          <div class="mod"><span class="wk">STAGE 2 · WKS 13–24</span><span>Placement search + real work on a working tomato farm</span></div>
+          <div class="mod"><span class="wk">STAGE 3 · WKS 25–28</span><span><span class="done">✓</span><b>T7</b> — Problem Solving in the Field: the diagnostic method, plant health, fruit, weather problems</span></div>
+          <div class="mod"><span class="wk">WKS 29–30</span><span><span class="done">✓</span><b>T8</b> — Tunnels, Greenhouses &amp; Scaling: net tunnels, drip &amp; fertigation, financing, honest expansion</span></div>
+          <div class="mod"><span class="wk">WKS 31–36</span><span><span class="done">✓</span><b>T9</b> — Enterprise Management + Stage 3 Capstone: cropping year, staff, KPIs, placement report</span></div>
+        </div>
+        <div class="feat-foot">
+          <span><b>$15</b> covers all three stages, AI tutor, marking, and certification.</span>
+          <a class="btn btn-brass" href="mailto:hello@castamplify.com?subject=SkillBridge%20Africa%20founding%20enrolment%20—%20Tomato%20Farming">Register founding interest</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="employers" style="background:var(--mist)">
+  <div class="wrap emp">
+    <div>
+      <span class="eyebrow">For employers</span>
+      <h2>Placement candidates who've already proven they show up.</h2>
+      <p class="sub" style="margin-bottom:0">Post your placement interest, set the trade and wage range, and choose from candidates ranked by their SkillBridge Score.</p>
+    </div>
+    <ul>
+      <li>Free to post placement interest during our founding period</li>
+      <li>Candidates arrive with 12 weeks of passed, dated theory behind them</li>
+      <li>Wages agreed directly between you and the student, recorded on-platform</li>
+      <li>A standard Placement Agreement covers hours, supervision, and your end-of-placement report</li>
+      <li>Hire your best placement students permanently from the Graduate Jobs Board</li>
+    </ul>
+  </div>
+</section>
+
+<section id="pathways">
+  <div class="wrap">
+    <span class="eyebrow">Pathways</span>
+    <h2>Keep climbing after SkillBridge</h2>
+    <p class="sub">A SkillBridge certificate is a beginning, not a ceiling. These established institutions across Africa and beyond offer routes to formal qualifications, diplomas, and degrees. They are independent organisations — listed for your guidance, with no affiliation to SkillBridge Africa.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr))">
+      <a class="card" href="https://www.unisa.ac.za" target="_blank" rel="noopener"><span class="no">DISTANCE UNIVERSITY</span><h4>UNISA — University of South Africa</h4><span class="cat">Africa's largest open distance university</span></a>
+      <a class="card" href="https://avu.org" target="_blank" rel="noopener"><span class="no">PAN-AFRICAN</span><h4>African Virtual University</h4><span class="cat">Online programmes across member states</span></a>
+      <a class="card" href="https://www.tvetcolleges.co.za" target="_blank" rel="noopener"><span class="no">TVET</span><h4>South African TVET Colleges</h4><span class="cat">Public technical &amp; vocational colleges</span></a>
+      <a class="card" href="https://www.uz.ac.zw" target="_blank" rel="noopener"><span class="no">UNIVERSITY</span><h4>University of Zimbabwe</h4><span class="cat">Harare, Zimbabwe</span></a>
+      <a class="card" href="https://www.uonbi.ac.ke" target="_blank" rel="noopener"><span class="no">UNIVERSITY</span><h4>University of Nairobi</h4><span class="cat">Nairobi, Kenya</span></a>
+      <a class="card" href="https://www.mak.ac.ug" target="_blank" rel="noopener"><span class="no">UNIVERSITY</span><h4>Makerere University</h4><span class="cat">Kampala, Uganda</span></a>
+      <a class="card" href="https://www.ug.edu.gh" target="_blank" rel="noopener"><span class="no">UNIVERSITY</span><h4>University of Ghana</h4><span class="cat">Accra, Ghana</span></a>
+      <a class="card" href="https://www.uct.ac.za" target="_blank" rel="noopener"><span class="no">UNIVERSITY</span><h4>University of Cape Town</h4><span class="cat">Cape Town, South Africa</span></a>
+      <a class="card" href="https://www.cityandguilds.com" target="_blank" rel="noopener"><span class="no">AWARDING BODY</span><h4>City &amp; Guilds</h4><span class="cat">Vocational qualifications, global</span></a>
+      <a class="card" href="https://www.sqa.org.uk" target="_blank" rel="noopener"><span class="no">AWARDING BODY</span><h4>SQA — Scottish Qualifications Authority</h4><span class="cat">Scotland's national awarding body</span></a>
+      <a class="card" href="https://www.open.ac.uk" target="_blank" rel="noopener"><span class="no">DISTANCE UNIVERSITY</span><h4>The Open University</h4><span class="cat">UK distance degrees</span></a>
+      <a class="card" href="https://www.coursera.org" target="_blank" rel="noopener"><span class="no">ONLINE LEARNING</span><h4>Coursera</h4><span class="cat">University-partnered online courses</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b>SkillBridge Africa</b> — practical skills, proven people.</div>
+    <div>Founding enrolment enquiries: <a href="mailto:hello@castamplify.com">hello@castamplify.com</a></div>
+    <div class="legal">
+      SkillBridge Africa is a skills training service and trading name of CastAmplify Ltd, registered in England and Wales. SkillBridge Africa is not a college or university; certificates are issued as a private training provider and no government accreditation is claimed. Course content is protected by copyright; copying or redistribution is prohibited. Placements are agreements between student and employer under the SkillBridge Placement Agreement. Progression rules, deadlines, and refund terms are set out in the SkillBridge Africa Regulations provided at enrolment.
+    </div>
+  </div>
+</footer>
+
+<script>
+const COURSES = [{"n":1,"c":"Agriculture & Crop Production","t":"Maize Production","s":"Commercial / Smallholder"},{"n":2,"c":"Agriculture & Crop Production","t":"Wheat & Small Grains Production","s":"Wheat / Barley / Sorghum / Millet"},{"n":3,"c":"Agriculture & Crop Production","t":"Horticulture: Vegetable Production","s":"Tomatoes / Onions / Leafy greens / Brassicas"},{"n":4,"c":"Agriculture & Crop Production","t":"Potato Production","s":""},{"n":5,"c":"Agriculture & Crop Production","t":"Tobacco Production & Curing","s":"Flue-cured / Burley"},{"n":6,"c":"Agriculture & Crop Production","t":"Cotton Production","s":""},{"n":7,"c":"Agriculture & Crop Production","t":"Soya Bean & Legume Production","s":"Soya / Groundnuts / Sugar beans"},{"n":8,"c":"Agriculture & Crop Production","t":"Fruit Orchard Management","s":"Citrus / Avocado / Mango / Bananas"},{"n":9,"c":"Agriculture & Crop Production","t":"Berry & High-Value Crop Production","s":"Blueberries / Strawberries"},{"n":10,"c":"Agriculture & Crop Production","t":"Greenhouse & Protected Cropping","s":"Tunnel farming / Hydroponics"},{"n":11,"c":"Agriculture & Crop Production","t":"Irrigation Design & Management","s":"Drip / Centre pivot / Flood"},{"n":12,"c":"Agriculture & Crop Production","t":"Soil Science & Fertiliser Management","s":""},{"n":13,"c":"Agriculture & Crop Production","t":"Crop Pest & Disease Management","s":"Integrated pest management"},{"n":14,"c":"Agriculture & Crop Production","t":"Seed Production & Nursery Management","s":""},{"n":15,"c":"Agriculture & Crop Production","t":"Organic Farming & Certification","s":""},{"n":16,"c":"Animal Husbandry & Livestock","t":"Piggery: Commercial Pig Production","s":"Breeding / Grower-finisher / Farrow-to-finish"},{"n":17,"c":"Animal Husbandry & Livestock","t":"Piggery: Pig Health & Biosecurity","s":""},{"n":18,"c":"Animal Husbandry & Livestock","t":"Poultry: Broiler Production","s":"Small-scale / Commercial contract growing"},{"n":19,"c":"Animal Husbandry & Livestock","t":"Poultry: Layer & Egg Production","s":"Battery / Deep litter / Free range"},{"n":20,"c":"Animal Husbandry & Livestock","t":"Poultry: Hatchery Management & Incubation","s":""},{"n":21,"c":"Animal Husbandry & Livestock","t":"Poultry: Indigenous & Free-Range Chickens","s":"Roadrunner / Dual purpose"},{"n":22,"c":"Animal Husbandry & Livestock","t":"Beef Cattle Production","s":"Pen fattening / Ranching"},{"n":23,"c":"Animal Husbandry & Livestock","t":"Dairy Farming & Milk Production","s":"Herd management / Milk hygiene"},{"n":24,"c":"Animal Husbandry & Livestock","t":"Goat Production","s":"Meat (Boer) / Dairy"},{"n":25,"c":"Animal Husbandry & Livestock","t":"Sheep Production","s":"Meat / Wool"},{"n":26,"c":"Animal Husbandry & Livestock","t":"Rabbit Production","s":""},{"n":27,"c":"Animal Husbandry & Livestock","t":"Fish Farming (Aquaculture)","s":"Tilapia / Catfish / Pond & cage systems"},{"n":28,"c":"Animal Husbandry & Livestock","t":"Beekeeping & Honey Production","s":""},{"n":29,"c":"Animal Husbandry & Livestock","t":"Animal Nutrition & Feed Formulation","s":"Pigs / Poultry / Ruminants"},{"n":30,"c":"Animal Husbandry & Livestock","t":"Livestock Health & Basic Veterinary Care","s":"Vaccination / Parasite control"},{"n":31,"c":"Construction & Building Trades","t":"Bricklaying & Blockwork","s":""},{"n":32,"c":"Construction & Building Trades","t":"Carpentry & Joinery","s":"Roofing / Formwork / Furniture"},{"n":33,"c":"Construction & Building Trades","t":"Plastering & Rendering","s":""},{"n":34,"c":"Construction & Building Trades","t":"Painting & Decorating","s":""},{"n":35,"c":"Construction & Building Trades","t":"Tiling: Wall & Floor","s":""},{"n":36,"c":"Construction & Building Trades","t":"Roofing & Waterproofing","s":"Tiles / Sheeting / Thatch"},{"n":37,"c":"Construction & Building Trades","t":"Steel Fixing & Reinforcement","s":""},{"n":38,"c":"Construction & Building Trades","t":"Concrete Work & Formwork","s":""},{"n":39,"c":"Construction & Building Trades","t":"Building Site Supervision","s":""},{"n":40,"c":"Construction & Building Trades","t":"Quantity Surveying Basics & Estimating","s":""},{"n":41,"c":"Construction & Building Trades","t":"Building Plans Reading & Draughting","s":""},{"n":42,"c":"Construction & Building Trades","t":"Welding & Fabrication","s":"Arc / MIG / TIG"},{"n":43,"c":"Construction & Building Trades","t":"Glazing & Aluminium Fitting","s":"Windows / Shopfronts / Partitions"},{"n":44,"c":"Construction & Building Trades","t":"Paving & Landscaping Construction","s":""},{"n":45,"c":"Electrical, Solar & Energy","t":"Domestic Electrical Installation","s":""},{"n":46,"c":"Electrical, Solar & Energy","t":"Commercial & Industrial Wiring","s":""},{"n":47,"c":"Electrical, Solar & Energy","t":"Solar PV Installation & Maintenance","s":"Off-grid / Grid-tied / Solar pumping"},{"n":48,"c":"Electrical, Solar & Energy","t":"Solar Water Heating Systems","s":""},{"n":49,"c":"Electrical, Solar & Energy","t":"Inverter & Battery Systems","s":"Lithium / Lead-acid / Backup design"},{"n":50,"c":"Electrical, Solar & Energy","t":"Electrical Fault Finding & Testing","s":""},{"n":51,"c":"Electrical, Solar & Energy","t":"Motor Rewinding & Repair","s":""},{"n":52,"c":"Electrical, Solar & Energy","t":"Generator Installation & Servicing","s":""},{"n":53,"c":"Electrical, Solar & Energy","t":"Borehole Pump Installation","s":"Submersible / Solar pumps"},{"n":54,"c":"Electrical, Solar & Energy","t":"Air Conditioning & Refrigeration","s":"Split units / Cold rooms"},{"n":55,"c":"Electrical, Solar & Energy","t":"Electrical Safety & Compliance","s":""},{"n":56,"c":"Electrical, Solar & Energy","t":"Home Automation & Smart Systems","s":""},{"n":57,"c":"Mechanical, Automotive & Engineering","t":"Motor Vehicle Mechanics (Petrol)","s":""},{"n":58,"c":"Mechanical, Automotive & Engineering","t":"Diesel Mechanics","s":"Trucks / Tractors / Plant"},{"n":59,"c":"Mechanical, Automotive & Engineering","t":"Auto Electrics & Diagnostics","s":""},{"n":60,"c":"Mechanical, Automotive & Engineering","t":"Motorcycle Mechanics","s":""},{"n":61,"c":"Mechanical, Automotive & Engineering","t":"Panel Beating & Spray Painting","s":""},{"n":62,"c":"Mechanical, Automotive & Engineering","t":"Tyre Fitting & Wheel Alignment","s":""},{"n":63,"c":"Mechanical, Automotive & Engineering","t":"Tractor & Farm Machinery Maintenance","s":""},{"n":64,"c":"Mechanical, Automotive & Engineering","t":"Earthmoving Plant Mechanics","s":"Excavators / Graders / Loaders"},{"n":65,"c":"Mechanical, Automotive & Engineering","t":"Fitting & Turning (Machining)","s":"Lathe / Milling"},{"n":66,"c":"Mechanical, Automotive & Engineering","t":"Boilermaking","s":""},{"n":67,"c":"Mechanical, Automotive & Engineering","t":"Hydraulics & Pneumatics","s":""},{"n":68,"c":"Mechanical, Automotive & Engineering","t":"Small Engine Repair","s":"Pumps / Generators / Mowers / Chainsaws"},{"n":69,"c":"Mechanical, Automotive & Engineering","t":"Bicycle Assembly & Repair","s":""},{"n":70,"c":"Mechanical, Automotive & Engineering","t":"Vehicle Valuation & Inspection","s":""},{"n":71,"c":"Plumbing & Water Systems","t":"Domestic Plumbing","s":""},{"n":72,"c":"Plumbing & Water Systems","t":"Commercial Plumbing & Drainage","s":""},{"n":73,"c":"Plumbing & Water Systems","t":"Water Reticulation & Pipe Laying","s":""},{"n":74,"c":"Plumbing & Water Systems","t":"Septic Tanks & On-Site Sanitation","s":""},{"n":75,"c":"Plumbing & Water Systems","t":"Rainwater Harvesting Systems","s":""},{"n":76,"c":"Plumbing & Water Systems","t":"Geyser & Hot Water Systems","s":""},{"n":77,"c":"Plumbing & Water Systems","t":"Irrigation Plumbing","s":""},{"n":78,"c":"Plumbing & Water Systems","t":"Borehole Siting & Development Basics","s":""},{"n":79,"c":"Hospitality, Catering & Food Processing","t":"Professional Cookery","s":"Hot kitchen / Cold kitchen"},{"n":80,"c":"Hospitality, Catering & Food Processing","t":"Baking & Confectionery","s":"Bread / Cakes / Pastries"},{"n":81,"c":"Hospitality, Catering & Food Processing","t":"Butchery & Meat Processing","s":"Cutting / Sausages / Biltong & curing"},{"n":82,"c":"Hospitality, Catering & Food Processing","t":"Food & Beverage Service","s":""},{"n":83,"c":"Hospitality, Catering & Food Processing","t":"Barista Skills & Coffee Service","s":""},{"n":84,"c":"Hospitality, Catering & Food Processing","t":"Bartending & Mixology","s":""},{"n":85,"c":"Hospitality, Catering & Food Processing","t":"Front Office & Reception","s":""},{"n":86,"c":"Hospitality, Catering & Food Processing","t":"Housekeeping & Accommodation Services","s":""},{"n":87,"c":"Hospitality, Catering & Food Processing","t":"Event Planning & Management","s":"Weddings / Corporate"},{"n":88,"c":"Hospitality, Catering & Food Processing","t":"Catering Business Management","s":""},{"n":89,"c":"Hospitality, Catering & Food Processing","t":"Food Safety & Hygiene (HACCP)","s":""},{"n":90,"c":"Hospitality, Catering & Food Processing","t":"Dairy Processing","s":"Yoghurt / Cheese / Maas"},{"n":91,"c":"Hospitality, Catering & Food Processing","t":"Fruit & Vegetable Processing","s":"Jams / Juices / Drying"},{"n":92,"c":"Hospitality, Catering & Food Processing","t":"Grain Milling & Stockfeed Production","s":""},{"n":93,"c":"Beauty, Hair & Wellness","t":"Hairdressing","s":"Cutting / Colouring / Braiding & weaves"},{"n":94,"c":"Beauty, Hair & Wellness","t":"Barbering","s":""},{"n":95,"c":"Beauty, Hair & Wellness","t":"Nail Technology","s":"Manicure / Acrylics / Gel"},{"n":96,"c":"Beauty, Hair & Wellness","t":"Make-Up Artistry","s":"Bridal / Editorial"},{"n":97,"c":"Beauty, Hair & Wellness","t":"Skincare & Facial Therapy","s":""},{"n":98,"c":"Beauty, Hair & Wellness","t":"Massage Therapy","s":"Swedish / Sports / Reflexology"},{"n":99,"c":"Beauty, Hair & Wellness","t":"Cosmetology & Salon Management","s":""},{"n":100,"c":"Beauty, Hair & Wellness","t":"Soap & Cosmetics Making","s":"Soaps / Lotions / Petroleum jelly"},{"n":101,"c":"Beauty, Hair & Wellness","t":"Personal Training & Fitness Instruction","s":""},{"n":102,"c":"Beauty, Hair & Wellness","t":"Nutrition & Wellness Coaching","s":""},{"n":103,"c":"Fashion, Textiles & Leatherwork","t":"Garment Construction & Dressmaking","s":""},{"n":104,"c":"Fashion, Textiles & Leatherwork","t":"Pattern Making & Grading","s":""},{"n":105,"c":"Fashion, Textiles & Leatherwork","t":"Tailoring (Menswear)","s":""},{"n":106,"c":"Fashion, Textiles & Leatherwork","t":"Fashion Design & Illustration","s":""},{"n":107,"c":"Fashion, Textiles & Leatherwork","t":"Industrial Sewing Machine Operation","s":""},{"n":108,"c":"Fashion, Textiles & Leatherwork","t":"Knitting & Crochet Production","s":""},{"n":109,"c":"Fashion, Textiles & Leatherwork","t":"Upholstery","s":"Furniture / Vehicle"},{"n":110,"c":"Fashion, Textiles & Leatherwork","t":"Leatherwork & Shoemaking","s":"Shoes / Bags / Belts"},{"n":111,"c":"Fashion, Textiles & Leatherwork","t":"Curtain & Blind Making","s":""},{"n":112,"c":"Fashion, Textiles & Leatherwork","t":"Screen Printing & Fabric Printing","s":"T-shirts / Signage"},{"n":113,"c":"Health & Social Care","t":"Nurse Aide / Care Assistant","s":""},{"n":114,"c":"Health & Social Care","t":"Home-Based Care for the Elderly","s":""},{"n":115,"c":"Health & Social Care","t":"First Aid & Emergency Response","s":"Workplace / Advanced"},{"n":116,"c":"Health & Social Care","t":"Community Health Work","s":""},{"n":117,"c":"Health & Social Care","t":"Pharmacy Assistant Skills","s":""},{"n":118,"c":"Health & Social Care","t":"Dental Assistant Skills","s":""},{"n":119,"c":"Health & Social Care","t":"Medical Records & Health Administration","s":""},{"n":120,"c":"Health & Social Care","t":"Counselling Skills Foundation","s":""},{"n":121,"c":"Health & Social Care","t":"Disability Support Work","s":""},{"n":122,"c":"Health & Social Care","t":"HIV/AIDS Care & Support","s":""},{"n":123,"c":"Health & Social Care","t":"Maternal & Child Health Support","s":""},{"n":124,"c":"Health & Social Care","t":"Health & Safety Officer Training","s":""},{"n":125,"c":"Childcare & Education Support","t":"Early Childhood Development (ECD)","s":""},{"n":126,"c":"Childcare & Education Support","t":"Teaching Assistant Skills","s":""},{"n":127,"c":"Childcare & Education Support","t":"Childminding & Nanny Training","s":""},{"n":128,"c":"Childcare & Education Support","t":"Special Needs Support","s":""},{"n":129,"c":"Childcare & Education Support","t":"Play-Based Learning & Activity Planning","s":""},{"n":130,"c":"Childcare & Education Support","t":"School Administration","s":""},{"n":131,"c":"Business, Office & Entrepreneurship","t":"Small Business Start-Up & Management","s":""},{"n":132,"c":"Business, Office & Entrepreneurship","t":"Bookkeeping & Basic Accounting","s":"Manual / Computerised"},{"n":133,"c":"Business, Office & Entrepreneurship","t":"Payroll Administration","s":""},{"n":134,"c":"Business, Office & Entrepreneurship","t":"Office Administration & Secretarial","s":""},{"n":135,"c":"Business, Office & Entrepreneurship","t":"Receptionist & Customer Service","s":""},{"n":136,"c":"Business, Office & Entrepreneurship","t":"Sales & Marketing Fundamentals","s":""},{"n":137,"c":"Business, Office & Entrepreneurship","t":"Retail & Shop Management","s":""},{"n":138,"c":"Business, Office & Entrepreneurship","t":"Stock Control & Inventory Management","s":""},{"n":139,"c":"Business, Office & Entrepreneurship","t":"Buying & Selling: Import/Export Basics","s":"Cross-border trading"},{"n":140,"c":"Business, Office & Entrepreneurship","t":"Project Management Fundamentals","s":""},{"n":141,"c":"Business, Office & Entrepreneurship","t":"Human Resources Assistant","s":""},{"n":142,"c":"Business, Office & Entrepreneurship","t":"Real Estate Agency Basics","s":""},{"n":143,"c":"Business, Office & Entrepreneurship","t":"Insurance & Financial Services Agent","s":""},{"n":144,"c":"Business, Office & Entrepreneurship","t":"Farm Business Management & Records","s":""},{"n":145,"c":"Digital & IT Skills","t":"Computer Basics & Digital Literacy","s":""},{"n":146,"c":"Digital & IT Skills","t":"Microsoft Office / Google Workspace","s":"Word / Excel / PowerPoint"},{"n":147,"c":"Digital & IT Skills","t":"Advanced Excel & Spreadsheets","s":""},{"n":148,"c":"Digital & IT Skills","t":"Web Design Fundamentals","s":"HTML & CSS / Website builders"},{"n":149,"c":"Digital & IT Skills","t":"Web Development with JavaScript","s":""},{"n":150,"c":"Digital & IT Skills","t":"Graphic Design","s":"Canva / Photoshop / CorelDRAW"},{"n":151,"c":"Digital & IT Skills","t":"Social Media Management","s":""},{"n":152,"c":"Digital & IT Skills","t":"Digital Marketing & SEO","s":""},{"n":153,"c":"Digital & IT Skills","t":"E-Commerce & Online Selling","s":""},{"n":154,"c":"Digital & IT Skills","t":"Computer Repair & Maintenance","s":"Hardware / Software"},{"n":155,"c":"Digital & IT Skills","t":"Networking & Internet Installation","s":"LAN / Wi-Fi / Starlink & VSAT"},{"n":156,"c":"Digital & IT Skills","t":"Cybersecurity Awareness & Basics","s":""},{"n":157,"c":"Digital & IT Skills","t":"Data Entry & Database Basics","s":""},{"n":158,"c":"Digital & IT Skills","t":"Mobile Phone Repair","s":""},{"n":159,"c":"Creative, Media & Design","t":"Photography","s":"Events / Portrait / Product"},{"n":160,"c":"Creative, Media & Design","t":"Videography & Video Editing","s":""},{"n":161,"c":"Creative, Media & Design","t":"Podcast Production","s":"Recording / Editing / Publishing"},{"n":162,"c":"Creative, Media & Design","t":"Music Production & Sound Engineering","s":""},{"n":163,"c":"Creative, Media & Design","t":"Radio & Broadcast Presenting","s":""},{"n":164,"c":"Creative, Media & Design","t":"Journalism & Content Writing","s":""},{"n":165,"c":"Creative, Media & Design","t":"Signwriting & Signage Production","s":""},{"n":166,"c":"Creative, Media & Design","t":"Interior Decorating","s":""},{"n":167,"c":"Creative, Media & Design","t":"Floristry & Event Décor","s":""},{"n":168,"c":"Creative, Media & Design","t":"Arts & Crafts Production","s":"Pottery / Woodcraft / Beadwork"},{"n":169,"c":"Transport, Logistics & Warehousing","t":"Professional Driving Theory & Defensive Driving","s":""},{"n":170,"c":"Transport, Logistics & Warehousing","t":"Heavy Vehicle Operations","s":"Rigid / Articulated"},{"n":171,"c":"Transport, Logistics & Warehousing","t":"Forklift & Materials Handling","s":""},{"n":172,"c":"Transport, Logistics & Warehousing","t":"Warehouse Operations","s":""},{"n":173,"c":"Transport, Logistics & Warehousing","t":"Logistics & Supply Chain Basics","s":""},{"n":174,"c":"Transport, Logistics & Warehousing","t":"Freight Forwarding & Customs Clearing","s":""},{"n":175,"c":"Transport, Logistics & Warehousing","t":"Courier & Last-Mile Delivery Operations","s":""},{"n":176,"c":"Transport, Logistics & Warehousing","t":"Fleet Management","s":""},{"n":177,"c":"Transport, Logistics & Warehousing","t":"Cross-Border Transport Documentation","s":""},{"n":178,"c":"Transport, Logistics & Warehousing","t":"Fuel Station Operations & Management","s":""},{"n":179,"c":"Cleaning & Facilities Management","t":"Commercial Cleaning Operations","s":"Offices / Retail / Industrial"},{"n":180,"c":"Cleaning & Facilities Management","t":"Specialist Cleaning","s":"Carpets / Windows / Deep cleans"},{"n":181,"c":"Cleaning & Facilities Management","t":"Housekeeping Supervision","s":""},{"n":182,"c":"Cleaning & Facilities Management","t":"Laundry & Dry-Cleaning Operations","s":""},{"n":183,"c":"Cleaning & Facilities Management","t":"Pest Control & Fumigation","s":""},{"n":184,"c":"Cleaning & Facilities Management","t":"Grounds Maintenance & Gardening Services","s":""},{"n":185,"c":"Cleaning & Facilities Management","t":"Facilities & Property Maintenance","s":""},{"n":186,"c":"Cleaning & Facilities Management","t":"Waste Management & Recycling Operations","s":""},{"n":187,"c":"Security & Safety","t":"Security Guard Training","s":""},{"n":188,"c":"Security & Safety","t":"CCTV Installation & Monitoring","s":""},{"n":189,"c":"Security & Safety","t":"Alarm & Electric Fence Installation","s":""},{"n":190,"c":"Security & Safety","t":"Fire Safety & Fire Marshal Training","s":""},{"n":191,"c":"Security & Safety","t":"Occupational Health & Safety (SHE Rep)","s":""},{"n":192,"c":"Security & Safety","t":"Close Protection & VIP Security Basics","s":""},{"n":193,"c":"Environment, Land & Mining","t":"Forestry & Timber Production","s":""},{"n":194,"c":"Environment, Land & Mining","t":"Wildlife & Game Ranch Management","s":""},{"n":195,"c":"Environment, Land & Mining","t":"Tour Guiding & Safari Operations","s":""},{"n":196,"c":"Environment, Land & Mining","t":"Environmental Management Basics","s":""},{"n":197,"c":"Environment, Land & Mining","t":"Land Surveying Basics & GPS Mapping","s":""},{"n":198,"c":"Environment, Land & Mining","t":"Small-Scale Mining Operations","s":"Gold / Chrome / Alluvial"},{"n":199,"c":"Environment, Land & Mining","t":"Mineral Prospecting Fundamentals","s":""},{"n":200,"c":"Environment, Land & Mining","t":"Gemstone Cutting & Jewellery Making","s":""}];
+const grid = document.getElementById('grid');
+const chipsEl = document.getElementById('chips');
+const countEl = document.getElementById('count');
+const moreBtn = document.getElementById('more');
+const qEl = document.getElementById('q');
+let activeCat = 'All';
+let shown = 24;
+
+const cats = ['All', ...[...new Set(COURSES.map(c=>c.c))]];
+cats.forEach(cat=>{
+  const b = document.createElement('button');
+  b.className='chip'; b.type='button'; b.textContent = cat==='All' ? 'All categories' : cat;
+  b.setAttribute('aria-pressed', cat===activeCat);
+  b.onclick = ()=>{ activeCat=cat; shown=24; [...chipsEl.children].forEach(x=>x.setAttribute('aria-pressed', x===b)); render(); };
+  chipsEl.appendChild(b);
+});
+
+function filtered(){
+  const q = qEl.value.trim().toLowerCase();
+  return COURSES.filter(c =>
+    (activeCat==='All' || c.c===activeCat) &&
+    (!q || (c.t+' '+c.s+' '+c.c).toLowerCase().includes(q))
+  );
+}
+function render(){
+  const list = filtered();
+  countEl.textContent = list.length + ' of 200 courses' + (activeCat!=='All' ? ' · ' + activeCat : '') ;
+  grid.innerHTML = '';
+  list.slice(0, shown).forEach(c=>{
+    const d = document.createElement('div');
+    d.className='card';
+    d.innerHTML = '<span class="no">COURSE '+String(c.n).padStart(3,'0')+'</span><h4></h4>'+(c.s?'<div class="spec"></div>':'')+'<span class="cat"></span>';
+    d.querySelector('h4').textContent = c.t;
+    if(c.s) d.querySelector('.spec').textContent = c.s;
+    d.querySelector('.cat').textContent = c.c;
+    grid.appendChild(d);
+  });
+  moreBtn.style.display = list.length > shown ? 'block' : 'none';
+}
+moreBtn.onclick = ()=>{ shown += 24; render(); };
+qEl.addEventListener('input', ()=>{ shown=24; render(); });
+render();
+
+/* ---- 54 African countries ---- */
+const COUNTRIES = ["Algeria","Angola","Benin","Botswana","Burkina Faso","Burundi","Cabo Verde","Cameroon","Central African Republic","Chad","Comoros","Congo (Republic)","Congo (DRC)","Côte d'Ivoire","Djibouti","Egypt","Equatorial Guinea","Eritrea","Eswatini","Ethiopia","Gabon","Gambia","Ghana","Guinea","Guinea-Bissau","Kenya","Lesotho","Liberia","Libya","Madagascar","Malawi","Mali","Mauritania","Mauritius","Morocco","Mozambique","Namibia","Niger","Nigeria","Rwanda","São Tomé and Príncipe","Senegal","Seychelles","Sierra Leone","Somalia","South Africa","South Sudan","Sudan","Tanzania","Togo","Tunisia","Uganda","Zambia","Zimbabwe"];
+const countryEl = document.getElementById('country');
+countryEl.innerHTML = '<option value="">Select your country ('+COUNTRIES.length+')</option>' + COUNTRIES.map(c=>'<option>'+c+'</option>').join('');
+try{ const saved = localStorage.getItem('sb_country'); if(saved) countryEl.value = saved; }catch(e){}
+countryEl.onchange = ()=>{ try{ localStorage.setItem('sb_country', countryEl.value); }catch(e){} };
+
+/* ---- 5 languages ---- */
+const I18N = {
+en:{navHow:"How it works",navCourses:"Courses",navFeat:"Featured",navEmp:"Employers",
+h1:"Learn a trade. Prove it. Get placed.",
+lead:"SkillBridge Africa is for everyone who couldn't go to college or afford high fees. We teach 200 practical skills online across all 54 African countries, then bridge you into a real, paid workplace placement. No placement, no certificate. Skills to survive and thrive — for $15.",
+priceSmall:"per course · start to finish",browse:"Browse 200 courses",
+st1:"Vocational courses",st2:"Full course, no extras",st3:"AI tutor & marking",st4:"Theory to certificate",
+howEye:"How it works",howH2:"Three stages. Two gates. One certificate that means something.",
+howSub:"Every course runs on a published clock — two weeks per module, hard deadlines, one paid re-sit. Your punctuality, marks, and effort build your SkillBridge Score, which employers use to pick placement candidates. Being on the ball is the curriculum. Course lengths vary — many finish in under 9 months.",
+entry:"Open entry: age 16+, basic English literacy — no prior qualifications needed.",
+catEye:"The catalogue",catH2:"200 courses. Pick your trade.",
+catSub:"From broiler production to solar installation, bricklaying to bookkeeping. Every course: $15, start to finish.",
+searchPh:"Search courses — try 'broiler', 'welding', 'solar'…",more:"Show more courses",
+featEye:"Featured course",featH2:"Inside a SkillBridge Africa course",
+featSub:"Here's Course 018 mapped end to end — every course in the catalogue follows this same gated journey.",
+empEye:"For employers",empH2:"Placement candidates who've already proven they show up.",
+note:""},
+fr:{navHow:"Comment ça marche",navCourses:"Cours",navFeat:"À la une",navEmp:"Employeurs",
+h1:"Apprenez un métier. Prouvez-le. Décrochez un stage.",
+lead:"SkillBridge Africa s'adresse à tous ceux qui n'ont pas pu aller à l'université ou payer des frais élevés. Nous enseignons 200 compétences pratiques en ligne dans les 54 pays africains, puis vous menons vers un stage rémunéré en entreprise. Pas de stage, pas de certificat. Des compétences pour vivre et prospérer — pour 15 $.",
+priceSmall:"par cours · du début à la fin",browse:"Parcourir les 200 cours",
+st1:"Cours professionnels",st2:"Cours complet, sans extras",st3:"Tuteur IA et correction",st4:"De la théorie au certificat",
+howEye:"Comment ça marche",howH2:"Trois étapes. Deux portes. Un certificat qui a une vraie valeur.",
+howSub:"Chaque cours suit un calendrier publié — deux semaines par module, des délais stricts, un seul rattrapage payant. Votre ponctualité, vos notes et vos efforts construisent votre Score SkillBridge, que les employeurs utilisent pour choisir leurs stagiaires. La durée varie — beaucoup de cours se terminent en moins de 9 mois.",
+entry:"Accès libre : 16 ans et plus, notions de base en anglais — aucun diplôme préalable requis.",
+catEye:"Le catalogue",catH2:"200 cours. Choisissez votre métier.",
+catSub:"De l'élevage de poulets de chair à l'installation solaire, de la maçonnerie à la comptabilité. Chaque cours : 15 $, du début à la fin.",
+searchPh:"Rechercher un cours…",more:"Afficher plus de cours",
+featEye:"Cours à la une",featH2:"À l'intérieur d'un cours SkillBridge Africa",
+featSub:"Le cours 018 détaillé de bout en bout — chaque cours du catalogue suit le même parcours à étapes.",
+empEye:"Pour les employeurs",empH2:"Des stagiaires qui ont déjà prouvé leur sérieux.",
+note:"Le contenu des cours est actuellement enseigné en anglais."},
+ar:{navHow:"كيف يعمل",navCourses:"الدورات",navFeat:"مميز",navEmp:"أصحاب العمل",
+h1:"تعلّم مهنة. أثبت مهارتك. احصل على تدريب.",
+lead:"سكيل بريدج أفريقيا لكل من لم يستطع الالتحاق بالجامعة أو تحمّل الرسوم المرتفعة. نعلّم ٢٠٠ مهارة عملية عبر الإنترنت في ٥٤ دولة أفريقية، ثم نوصلك إلى تدريب عملي مدفوع الأجر. لا تدريب، لا شهادة. مهارات للعيش والازدهار — مقابل ١٥ دولاراً.",
+priceSmall:"لكل دورة · من البداية إلى النهاية",browse:"تصفّح ٢٠٠ دورة",
+st1:"دورة مهنية",st2:"دورة كاملة بلا رسوم إضافية",st3:"معلّم ذكاء اصطناعي وتصحيح",st4:"من النظرية إلى الشهادة",
+howEye:"كيف يعمل",howH2:"ثلاث مراحل. بوابتان. شهادة لها قيمة حقيقية.",
+howSub:"كل دورة تسير وفق جدول معلن — أسبوعان لكل وحدة، ومواعيد نهائية صارمة، وإعادة واحدة مدفوعة. انضباطك ودرجاتك وجهدك تبني درجة سكيل بريدج التي يعتمدها أصحاب العمل لاختيار المتدربين. تختلف مدة الدورات — وكثير منها ينتهي في أقل من ٩ أشهر.",
+entry:"التسجيل مفتوح: ١٦ سنة فما فوق مع إلمام أساسي بالإنجليزية — دون مؤهلات مسبقة.",
+catEye:"الدليل",catH2:"٢٠٠ دورة. اختر مهنتك.",
+catSub:"من إنتاج دجاج اللحم إلى تركيب الطاقة الشمسية، ومن البناء إلى مسك الدفاتر. كل دورة: ١٥ دولاراً من البداية إلى النهاية.",
+searchPh:"ابحث عن دورة…",more:"عرض المزيد من الدورات",
+featEye:"دورة مميزة",featH2:"داخل دورة سكيل بريدج أفريقيا",
+featSub:"الدورة ٠١٨ مفصّلة من البداية إلى النهاية — وكل دورة في الدليل تتبع المسار نفسه.",
+empEye:"لأصحاب العمل",empH2:"متدربون أثبتوا التزامهم مسبقاً.",
+note:"محتوى الدورات يُدرَّس حالياً باللغة الإنجليزية."},
+sw:{navHow:"Jinsi inavyofanya kazi",navCourses:"Kozi",navFeat:"Maalum",navEmp:"Waajiri",
+h1:"Jifunze ufundi. Uthibitishe. Pata nafasi.",
+lead:"SkillBridge Africa ni kwa ajili ya kila mtu ambaye hakuweza kwenda chuo au kumudu ada kubwa. Tunafundisha stadi 200 za vitendo mtandaoni katika nchi zote 54 za Afrika, kisha tunakuunganisha na mafunzo ya kazi yenye malipo. Bila mafunzo kazini, hakuna cheti. Stadi za kuishi na kustawi — kwa $15.",
+priceSmall:"kwa kozi · mwanzo hadi mwisho",browse:"Vinjari kozi 200",
+st1:"Kozi za ufundi",st2:"Kozi kamili, bila gharama za ziada",st3:"Mwalimu wa AI na usahihishaji",st4:"Nadharia hadi cheti",
+howEye:"Jinsi inavyofanya kazi",howH2:"Hatua tatu. Milango miwili. Cheti chenye maana halisi.",
+howSub:"Kila kozi ina ratiba iliyotangazwa — wiki mbili kwa kila moduli, tarehe za mwisho kali, na marudio moja ya kulipia. Nidhamu yako, alama zako na juhudi zako hujenga Alama yako ya SkillBridge, ambayo waajiri huitumia kuchagua wanafunzi wa mafunzo. Muda wa kozi hutofautiana — nyingi humalizika chini ya miezi 9.",
+entry:"Usajili wazi: umri wa miaka 16+, Kiingereza cha msingi — hakuna vyeti vya awali vinavyohitajika.",
+catEye:"Orodha ya kozi",catH2:"Kozi 200. Chagua ufundi wako.",
+catSub:"Kuanzia ufugaji wa kuku wa nyama hadi usimikaji wa sola, ujenzi hadi uhasibu. Kila kozi: $15, mwanzo hadi mwisho.",
+searchPh:"Tafuta kozi…",more:"Onyesha kozi zaidi",
+featEye:"Kozi maalum",featH2:"Ndani ya kozi ya SkillBridge Africa",
+featSub:"Kozi 018 imepangwa mwanzo hadi mwisho — kila kozi katika orodha hufuata safari ile ile.",
+empEye:"Kwa waajiri",empH2:"Wanafunzi waliokwisha thibitisha kuwa wanajituma.",
+note:"Maudhui ya kozi kwa sasa yanafundishwa kwa Kiingereza."},
+pt:{navHow:"Como funciona",navCourses:"Cursos",navFeat:"Destaque",navEmp:"Empregadores",
+h1:"Aprenda um ofício. Prove. Consiga um estágio.",
+lead:"A SkillBridge Africa é para todos os que não puderam ir à universidade nem pagar propinas elevadas. Ensinamos 200 competências práticas online nos 54 países africanos e depois ligamo-lo a um estágio remunerado. Sem estágio, não há certificado. Competências para sobreviver e prosperar — por 15 $.",
+priceSmall:"por curso · do início ao fim",browse:"Ver os 200 cursos",
+st1:"Cursos profissionais",st2:"Curso completo, sem extras",st3:"Tutor de IA e correção",st4:"Da teoria ao certificado",
+howEye:"Como funciona",howH2:"Três etapas. Duas portas. Um certificado com valor real.",
+howSub:"Cada curso segue um calendário publicado — duas semanas por módulo, prazos rigorosos e uma única repetição paga. A sua pontualidade, notas e esforço constroem o seu SkillBridge Score, que os empregadores usam para escolher estagiários. A duração varia — muitos cursos terminam em menos de 9 meses.",
+entry:"Acesso livre: 16+ anos, inglês básico — sem qualificações prévias.",
+catEye:"O catálogo",catH2:"200 cursos. Escolha o seu ofício.",
+catSub:"Da produção de frangos à instalação solar, da alvenaria à contabilidade. Cada curso: 15 $, do início ao fim.",
+searchPh:"Pesquisar cursos…",more:"Mostrar mais cursos",
+featEye:"Curso em destaque",featH2:"Dentro de um curso SkillBridge Africa",
+featSub:"O curso 018 mapeado de ponta a ponta — todos os cursos do catálogo seguem o mesmo percurso.",
+empEye:"Para empregadores",empH2:"Estagiários que já provaram que aparecem.",
+note:"O conteúdo dos cursos é atualmente lecionado em inglês."}
+};
+
+const langEl = document.getElementById('lang');
+const langNote = document.getElementById('langnote');
+function applyLang(code){
+  const t = I18N[code] || I18N.en;
+  const navA = document.querySelectorAll('.nav-links a');
+  if(navA.length===4){ navA[0].textContent=t.navHow; navA[1].textContent=t.navCourses; navA[2].textContent=t.navFeat; navA[3].textContent=t.navEmp; }
+  document.querySelector('.hero h1').textContent = t.h1;
+  document.querySelector('.hero .lead').textContent = t.lead;
+  document.querySelector('.price-tag small').textContent = t.priceSmall;
+  document.querySelector('.hero-cta .btn-ghost').textContent = t.browse;
+  const st = document.querySelectorAll('.stats .stat span');
+  if(st.length===4){ st[0].textContent=t.st1; st[1].textContent=t.st2; st[2].textContent=t.st3; st[3].textContent=t.st4; }
+  const sec = (id,eye,h2,sub)=>{ const s=document.getElementById(id); if(!s) return;
+    const e=s.querySelector('.eyebrow'); if(e&&eye) e.textContent=eye;
+    const h=s.querySelector('h2'); if(h&&h2) h.textContent=h2;
+    const p=s.querySelector('.sub'); if(p&&sub) p.textContent=sub; };
+  sec('how',t.howEye,t.howH2,t.howSub);
+  document.getElementById('entryline').textContent = t.entry;
+  sec('catalogue',t.catEye,t.catH2,t.catSub);
+  qEl.placeholder = t.searchPh;
+  moreBtn.textContent = t.more;
+  sec('featured',t.featEye,t.featH2,t.featSub);
+  sec('employers',t.empEye,t.empH2,null);
+  langNote.textContent = t.note;
+  langNote.style.display = t.note ? 'block' : 'none';
+  document.documentElement.lang = code;
+  document.documentElement.dir = (code==='ar') ? 'rtl' : 'ltr';
+  try{ localStorage.setItem('sb_lang', code); }catch(e){}
+}
+langEl.onchange = ()=>applyLang(langEl.value);
+try{ const sl = localStorage.getItem('sb_lang'); if(sl && I18N[sl]){ langEl.value=sl; applyLang(sl); } }catch(e){}
+
+/* ---- Course tab switcher ---- */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t === tab));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + target));
+  });
+});
+
+</script>
+</body>
+</html>
